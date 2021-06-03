@@ -5,8 +5,8 @@ provider "azurerm" {
 
 terraform {
     backend "azurerm" {
-        resource_group_name  = "tf_rg_blobstore"
-        storage_account_name = "tfstoragebinarythistle"
+        resource_group_name  = "tf-rg"
+        storage_account_name = "tfstorage123"
         container_name       = "tfstate"
         key                  = "terraform.tfstate"
     }
@@ -21,7 +21,7 @@ variable "imagebuild" {
 
 resource "azurerm_resource_group" "tf_test" {
   name = "tfmainrg"
-  location = "Australia East"
+  location = "eastus"
 }
 
 resource "azurerm_container_group" "tfcg_test" {
@@ -35,7 +35,7 @@ resource "azurerm_container_group" "tfcg_test" {
 
   container {
       name            = "weatherapi"
-      image           = "binarythistle/weatherapi:${var.imagebuild}"
+      image           = "littlepeople/weatherapi:${var.imagebuild}"
         cpu             = "1"
         memory          = "1"
 
